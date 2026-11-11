@@ -1,0 +1,44 @@
+[
+  {
+    "namespace": "trigram",
+    "description": "Trigram (SQLite FTS5) index for Thunderbird's Quick Filter bar and global search box.",
+    "functions": [
+      {
+        "name": "configure",
+        "type": "function",
+        "async": true,
+        "parameters": [
+          {
+            "name": "config",
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean", "optional": true },
+              "sortByRelevance": { "type": "boolean", "optional": true },
+              "redirectGlobalSearch": { "type": "boolean", "optional": true },
+              "extraFields": { "type": "array", "items": { "type": "string" }, "optional": true },
+              "fuzzy": { "type": "boolean", "optional": true },
+              "fuzzyThreshold": { "type": "number", "optional": true },
+              "indexBodies": { "type": "boolean", "optional": true },
+              "maxBodyChars": { "type": "integer", "optional": true },
+              "rescanMinutes": { "type": "integer", "optional": true }
+            }
+          }
+        ]
+      },
+      { "name": "getStatus", "type": "function", "async": true, "parameters": [] },
+      { "name": "rescan", "type": "function", "async": true, "parameters": [] },
+      { "name": "reindex", "type": "function", "async": true, "parameters": [] },
+      {
+        "name": "search",
+        "type": "function",
+        "async": true,
+        "description": "Run a query against the index (for diagnostics).",
+        "parameters": [
+          { "name": "query", "type": "string" },
+          { "name": "fields", "optional": true, "type": "array", "items": { "type": "string" } }
+        ]
+      },
+      { "name": "enableAllQuickFilterFields", "type": "function", "async": true, "parameters": [] }
+    ]
+  }
+]

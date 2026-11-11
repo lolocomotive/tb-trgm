@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="26" cy="26" r="17" fill="none" stroke="#2a6fdb" stroke-width="6"/>
+  <line x1="38.5" y1="38.5" x2="56" y2="56" stroke="#2a6fdb" stroke-width="7" stroke-linecap="round"/>
+  <text x="26" y="31" font-family="sans-serif" font-size="13" font-weight="bold" text-anchor="middle" fill="#2a6fdb">abc</text>
+</svg>

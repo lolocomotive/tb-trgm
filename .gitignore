@@ -1,0 +1,5 @@
+test/profile/
+test/*.sqlite*
+test/tb.log
+node_modules/
+dist/

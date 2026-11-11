@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Trigram Search – Options</title>
+    <style>
+      :root { --fg: #1b1b1f; --muted: #6b6b76; --line: #e3e3e8; --bg: #fff; color-scheme: light dark; }
+      @media (prefers-color-scheme: dark) { :root { --fg: #e8e8ee; --muted: #a0a0ab; --line: #34333c; --bg: #1c1b22; } }
+      body { max-width: 760px; margin: 0 auto; padding: 16px; font: 14px/1.4 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+      section { border-bottom: 1px solid var(--line); padding: 12px 0; }
+      h1 { font-size: 20px; }
+      h2 { font-size: 15px; margin: 0 0 8px; }
+      label { display: block; margin: 4px 0; }
+      .row { display: flex; gap: 18px; flex-wrap: wrap; margin-left: 22px; }
+      .row label { display: inline-flex; gap: 4px; }
+      .hint { color: var(--muted); font-size: 12px; margin: 2px 0 6px 22px; }
+      #stats { font-family: ui-monospace, monospace; font-size: 12px; white-space: pre; color: var(--muted); }
+      button { margin-right: 8px; }
+    </style>
+  </head>
+  <body>
+    <h1>Trigram Search</h1>
+
+    <section>
+      <h2>Index status</h2>
+      <div id="stats">Loading…</div>
+      <p>
+        <button id="rescan">Rescan folders now</button>
+        <button id="reindex">Rebuild index from scratch</button>
+      </p>
+      <p class="hint" style="margin-left:0">Progress is also shown in Thunderbird's status bar while indexing.</p>
+    </section>
+
+    <section>
+      <h2>Quick Filter bar</h2>
+      <label><input type="checkbox" id="replaceQuickFilter" /> Use the trigram index for the Quick Filter text box</label>
+      <p class="hint">The Sender / Recipients / Subject / Body buttons choose the fields. Recipients covers To, Cc and Bcc.</p>
+      <div class="row hint">
+        Also search in:
+        <label><input type="checkbox" id="qfb-attachments" /> attachment names</label>
+        <label><input type="checkbox" id="qfb-tags" /> tags</label>
+      </div>
+      <label><input type="checkbox" id="sortByRelevance" /> Sort search results by relevance instead of date</label>
+      <p class="hint">Off: results keep the folder's sort (date by default) and you can still click the “Relevance” column header. On: Quick Filter results are sorted best match first, and the full-screen search page defaults to “relevance”.</p>
+      <label><input type="checkbox" id="redirectGlobalSearch" /> Use the trigram index for Thunderbird's full-screen search page</label>
+      <p class="hint">Covers the global search box, Enter in the Quick Filter and the search box on the results page. Results show in Thunderbird's usual search page (facets, timeline). Needs Gloda indexing on (the default); otherwise results open as a message list.</p>
+    </section>
+
+    <section>
+      <h2>Matching</h2>
+      <label><input type="checkbox" id="fuzzy" /> Fuzzy matching (typo tolerance)</label>
+      <label>Fuzzy similarity threshold: <input type="range" id="fuzzyThreshold" min="0.2" max="0.9" step="0.05" /> <span id="thresholdVal"></span></label>
+      <p class="hint">Lower finds more (and looser) matches. Exact matches always rank above fuzzy ones.</p>
+    </section>
+
+    <section>
+      <h2>Indexing</h2>
+      <label><input type="checkbox" id="indexBodies" /> Index message bodies and attachment names</label>
+      <p class="hint">Bodies are read from Thunderbird's local message store. IMAP messages that are not synchronized for offline use are indexed by headers only until they are downloaded.</p>
+      <label>Max body characters indexed per message: <input type="number" id="maxBodyChars" min="1000" max="1000000" step="1000" /></label>
+      <label>Rescan folders every <input type="number" id="rescanMinutes" min="5" max="1440" /> minutes</label>
+    </section>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

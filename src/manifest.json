@@ -1,0 +1,46 @@
+{
+  "manifest_version": 2,
+  "name": "Trigram Search",
+  "description": "Makes Thunderbird's Quick Filter bar and global search use a trigram index (SQLite FTS5): fuzzy substring matching across every field, exact matches ranked first.",
+  "version": "1.0.0",
+  "author": "lolocomotive",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "trigram-search@lolocomotive",
+      "strict_min_version": "128.0"
+    }
+  },
+  "permissions": [
+    "storage"
+  ],
+  "background": {
+    "page": "background/background.html"
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "icons": {
+    "64": "icons/icon.svg"
+  },
+  "experiment_apis": {
+    "trigram": {
+      "schema": "api/trigram/schema.json",
+      "parent": {
+        "scopes": [
+          "addon_parent"
+        ],
+        "paths": [
+          [
+            "trigram"
+          ]
+        ],
+        "script": "api/trigram/parent.js",
+        "events": [
+          "startup"
+        ]
+      }
+    }
+  },
+  "homepage_url": "https://github.com/lolocomotive/tb-trgm"
+}
